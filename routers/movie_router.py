@@ -248,12 +248,12 @@ async def filtering_movies(filter: Filter):
 #     return serializedict(movies.find_one({"release_date": date}, {"movie_name": 1}))
 #
 #
-# @cinema.get("/movie/cast", tags=["filter"])
-# async def filter_movie_based_on_cast(acter: str, actress: str, villian: str, support_role: str):
-#     if not movies.find_one({"cast": {"$all": [acter, actress, villian, support_role]}}):
-#         raise HTTPException(status_code=404, detail="movie cast not found in collection")
-#
-#     return serializedict(movies.find_one({"cast": {"$all": [acter, actress, villian, support_role]}}))
+@cinema.get("/movie/cast", tags=["filter1"])
+async def filter_movie_based_on_cast(acter: str, actress: str, villian: str, support_role: str):
+    if not movies.find_one({"cast": {"$all": [acter, actress, villian, support_role]}}):
+        raise HTTPException(status_code=404, detail="movie cast not found in collection")
+
+    return serializedict(movies.find_one({"cast": {"$all": [acter, actress, villian, support_role]}}))
 
 @cinema.get("/movie/rating/sort", tags=["sorting"], description="sorting the movies based on rating")
 async def sort_based_on_rating(option: Literal["Acs", "Desc"]):
